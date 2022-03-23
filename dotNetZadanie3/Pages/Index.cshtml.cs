@@ -33,7 +33,7 @@ public class IndexModel : PageModel
         }
         else
         {
-            ViewData["Result"] = Year.Name + " urodził się  w "+ Year.Year +". " + Year.YearCheck(Year.Year);
+            ViewData["Result"] = Year.Name + Year.NameCheck(Year.Name) + " się  w " + Year.Year +". " + Year.YearCheck(Year.Year);
             return Page();
         }
     }
