@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Fizz Buzz";
+ }
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Year.Name" style="float: left;">Imie:</label>
+            <br />
+            <input asp-for="Year.Name" style="float: left;" />
+            <br />
+            <br />
+            <label asp-for="Year.Year" style="float: left;">Rok urodzenia:</label>
+            <br />
+            <input asp-for="Year.Year" style="float: left;" />
+            <br />
+            <button type="submit" class="btn btn-primary" style="margin-top:10px; margin-bottom:10px; display:flex;">Zatwierdź</button>
+
+            <div class="alert alert-success" style="text-align:left"> @ViewData["Result"]</div>
+            <span asp-validation-for="Year.Name" class="text-danger" style="font-weight: bold;"></span>
+            <br />
+            <span asp-validation-for="Year.Year" class="text-danger" style="font-weight: bold;"></span>
+        </div>
+    </form>
+</div>
