@@ -6,8 +6,7 @@
 <p>Dane w zapisane w sesji</p>
 @if (Model.Year != null)
 {
-    <p>@Html.DisplayNameFor(model => Model.Year.Name): @Model.Year.Name </p>
-    <p>@Html.DisplayNameFor(model => Model.Year.Year): @Model.Year.Year </p>
-    <div class="alert alert-success" style="text-align:left"> @ViewData["Result"]</div>
+    //<p>@Html.DisplayNameFor(model => Model.Year.Name): @Model.Year.Name </p>
+    <p>@Model.Year.Name, @Model.Year.Year - @ViewData["Result"] </p>
 
 }

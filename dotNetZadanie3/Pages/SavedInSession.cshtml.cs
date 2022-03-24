@@ -11,6 +11,7 @@ namespace dotNetZadanie3.Pages
     public class SavedInSessionModel : PageModel
     {
         public Years Year { get; set; }
+
         public void OnGet()
         {
             var Data = HttpContext.Session.GetString("Data");
