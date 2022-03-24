@@ -18,6 +18,7 @@ namespace dotNetZadanie3.Pages
             if (Data != null)
             {
                 Year = JsonConvert.DeserializeObject<Years>(Data);
+                ViewData["Result"] = Year.YearCheck(Year.Year);
             }
         }
     }
