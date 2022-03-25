@@ -4,9 +4,14 @@
     ViewData["Title"] = "Data in session";
 }
 <p>Dane w zapisane w sesji</p>
-@if (Model.Year != null)
+@if (Model.cache != null)
 {
+    <ul>
+        @foreach(string[] data in Model.cache){
+                <p>@data[0], @data[1]. @data[2] </p>
+            }
+    </ul>
     //<p>@Html.DisplayNameFor(model => Model.Year.Name): @Model.Year.Name </p>
-    <p>@Model.Year.Name, @Model.Year.Year - @ViewData["Result"] </p>
+    //<p>@Model.Year.Name, @Model.Year.Year - @ViewData["Result"] </p>
 
 }

@@ -12,14 +12,16 @@ namespace dotNetZadanie3.Pages
     {
         public Years Year { get; set; }
 
+        public List<string[]> cache;
+
         public void OnGet()
         {
             var Data = HttpContext.Session.GetString("Data");
 
             if (Data != null)
             {
-                Year = JsonConvert.DeserializeObject<Years>(Data);
-                ViewData["Result"] = Year.YearCheck(Year.Year);
+                cache = JsonConvert.DeserializeObject<List<string[]>>(Data);
+                //ViewData["Result"] = Year.YearCheck(Year.Year);
             }
         }
     }

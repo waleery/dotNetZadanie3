@@ -10,6 +10,9 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
+
+    public string[] data;
+
     [BindProperty]
     public Years Year {get; set;}
 
@@ -35,11 +38,34 @@ public class IndexModel : PageModel
         }
         else
         {
-            HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Year));
+            data = new string[3];
+            data[0] = Year.Name;
+            data[1] = Year.Year.ToString();
+            data[2] = Year.YearCheck(Year.Year);
+
+            List<string[]> cache;
+
+            var Data = HttpContext.Session.GetString("Data");
+
+            if (Data != null)
+            {
+                cache = JsonConvert.DeserializeObject<List<string[]>>(Data);
+            }
+            else
+            {
+                cache = new List<string[]>();
+            }
+
+            cache.Add(data);
+            HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(cache));
+            ViewData["Result"] = data[0] + Year.NameCheck(Year.Name) + " się  w " + data[1] + ". " + data[2];
+
+            return Page();
+            //HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Year));
+            //return Page();
+
             //HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Text));
             //return RedirectToPage("./SavedInSession");
-            ViewData["Result"] = Year.Name + Year.NameCheck(Year.Name) + " się  w " + Year.Year +". " + Year.YearCheck(Year.Year);
-            return Page();
         }
     }
 }
