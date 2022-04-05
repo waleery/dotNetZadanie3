@@ -35,10 +35,11 @@ public class IndexModel : PageModel
         }
         else
         {
-            data = new string[3];
+            data = new string[4];
             data[0] = Year.Name;
-            data[1] = Year.Year.ToString();
-            data[2] = Year.YearCheck(Year.Year);
+            data[1] = Year.Surname;
+            data[2] = Year.Year.ToString();
+            data[3] = Year.YearCheck(Year.Year);
 
             List<string[]> cache;
 
@@ -55,7 +56,7 @@ public class IndexModel : PageModel
 
             cache.Add(data);
             HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(cache));
-            ViewData["Result"] = data[0] + Year.NameCheck(Year.Name) + " się  w " + data[1] + ". " + data[2];
+            ViewData["Result"] = data[0] + data[1] + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
 
             return Page();
             //HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Year));
