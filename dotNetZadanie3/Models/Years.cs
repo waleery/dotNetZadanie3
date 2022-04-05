@@ -24,7 +24,7 @@ namespace dotNetZadanie3.Models
         public DateTime? date { get; set; }
         
         
-        [Display(Name = "Kiedy bylo zapytanie")]
+        [Display(Name = "Wynik zapytania")]
         public String? wynik { get; set; }
        
         
