@@ -1,0 +1,11 @@
+﻿@page
+@model dotNetZadanie3.Pages.LastSearchedModel
+@{
+}
+
+@if (Model.YearsContext != null){
+    @foreach (var item in Model.YearsContext)
+    {
+        <p>@Html.DisplayFor(modelItem => item.wynik)</p>
+    }
+}

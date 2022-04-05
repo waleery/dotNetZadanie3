@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using dotNetZadanie3.Data;
 
 namespace dotNetZadanie3.Pages;
 
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
+    private readonly YearsContext _context;
 
 
     public string[] data;
@@ -16,10 +18,14 @@ public class IndexModel : PageModel
     [BindProperty]
     public Years Year {get; set;}
 
-    
-    public IndexModel(ILogger<IndexModel> logger)
+    public string Result {get; set;}
+
+    public IList<Years> Years { get; set; }
+
+    public IndexModel(ILogger<IndexModel> logger, YearsContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public void OnGet()
@@ -56,9 +62,17 @@ public class IndexModel : PageModel
 
             cache.Add(data);
             HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(cache));
-            ViewData["Result"] = data[0] + data[1] + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
+            Result = data[0] +" "+ data[1] + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
+
+            
+            Year.wynik = Result;
+            Year.date = DateTime.Now;
+            _context.Years.Add(Year);
+            _context.SaveChanges();  
 
             return Page();
+
+
             //HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Year));
             //return Page();
 
