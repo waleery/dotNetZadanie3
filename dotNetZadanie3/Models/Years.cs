@@ -4,6 +4,8 @@ namespace dotNetZadanie3.Models
 {
     public class Years
     {
+        public int Id { get; set; }
+
         [Display(Name = "Imie")]
         [Required(ErrorMessage = "Pole '{0}' jest wymagane!"), StringLength(10, ErrorMessage = "Pole {0} musi być krótsze niż {2} liter!")]
         public string? Name { get; set; }
