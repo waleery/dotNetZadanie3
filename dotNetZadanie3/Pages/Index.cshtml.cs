@@ -17,9 +17,6 @@ public class IndexModel : PageModel
     public Years Year {get; set;}
 
     
-
-    //public string Text { get; set; }
-
     public IndexModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
