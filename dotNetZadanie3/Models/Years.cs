@@ -34,10 +34,10 @@ namespace dotNetZadanie3.Models
 
             if (lastCharacter == 'a')
             {
-                return " urodziła ";
+                return "urodziła";
             } else
             {
-                return " urodził ";
+                return "urodził";
             }
         }
 

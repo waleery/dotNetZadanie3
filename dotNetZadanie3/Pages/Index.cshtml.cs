@@ -62,7 +62,7 @@ public class IndexModel : PageModel
 
             cache.Add(data);
             HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(cache));
-            Result = data[0] +" "+ data[1] + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
+            Result = data[0] +" "+ data[1] + " " + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
 
             
             Year.wynik = Result;
