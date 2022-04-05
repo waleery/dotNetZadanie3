@@ -1,6 +1,11 @@
-﻿namespace dotNetZadanie3.Data
+﻿using dotNetZadanie3.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace dotNetZadanie3.Data
 {
-    public class YerasContext
+    public class PeopleContext : DbContext
     {
+        public DbSet<Years> Years { get; set; }
     }
+
 }
