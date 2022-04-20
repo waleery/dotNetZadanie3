@@ -37,7 +37,7 @@ namespace dotNetZadanie3.Models
                 return "urodziła";
             } else
             {
-                return "urodził";
+                return "urodził ";
             }
         }
 
