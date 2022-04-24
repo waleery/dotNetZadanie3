@@ -1,10 +1,12 @@
 using dotNetZadanie3.Data;
 using dotNetZadanie3.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace dotNetZadanie3.Pages
 {
+    [Authorize]
     public class LastSearchedModel : PageModel
     {
         private readonly YearsContext _context;
