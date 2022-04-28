@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using dotNetZadanie3.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace dotNetZadanie3.Pages;
 
@@ -11,6 +12,8 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
     private readonly YearsContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
+
 
 
     public string[] data;
@@ -22,10 +25,11 @@ public class IndexModel : PageModel
 
     public IList<Years> Years { get; set; }
 
-    public IndexModel(ILogger<IndexModel> logger, YearsContext context)
+    public IndexModel(ILogger<IndexModel> logger, YearsContext context, UserManager<IdentityUser> userManager)
     {
         _logger = logger;
         _context = context;
+        _userManager = userManager;
     }
 
     public void OnGet()
@@ -64,7 +68,9 @@ public class IndexModel : PageModel
             HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(cache));
             Result = data[0] +" "+ data[1] + " " + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
 
-            
+
+
+            Year.userId = _userManager.GetUserId(User);
             Year.wynik = Result;
             Year.date = DateTime.Now;
             _context.Years.Add(Year);

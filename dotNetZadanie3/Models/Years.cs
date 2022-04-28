@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations;
 namespace dotNetZadanie3.Models
 {
@@ -26,8 +27,13 @@ namespace dotNetZadanie3.Models
         
         [Display(Name = "Wynik zapytania")]
         public String? wynik { get; set; }
-       
-        
+
+        public String? userId { get; set; }
+
+        //public virtual IdentityUser? IdentityUser { get; set; }
+
+
+
         public string NameCheck(string? name)
         {
             char lastCharacter = name[name.Length - 1];

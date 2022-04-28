@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotNetZadanie3.Data;
 
@@ -11,9 +12,10 @@ using dotNetZadanie3.Data;
 namespace dotNetZadanie3.Migrations
 {
     [DbContext(typeof(YearsContext))]
-    partial class YearsContextModelSnapshot : ModelSnapshot
+    [Migration("20220428183437_AddUserId")]
+    partial class AddUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

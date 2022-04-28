@@ -4,9 +4,19 @@
 }
 <p>Ostatnie 20 wyników</p>
 
-@if (Model.YearsContext != null){
-    @foreach (var item in Model.YearsContext)
-    {
-        <p>@Html.DisplayFor(modelItem => item.wynik)</p>
-    }
+@if (Model.YearsContext != null)
+{
+	<form method="post">
+		@foreach (var item in Model.YearsContext)
+		{
+			<p>
+				@Html.DisplayFor(modelItem => item.wynik)
+				@if (item.userId == Model.obecnyUzytkownik)
+				{
+					<input class="btn btn-outline-danger" style="float: right" type="submit" asp-page-handler="DeleteRecord" asp-route-id="@item.Id" value="Usuń" />
+				}
+			</p>
+		}
+	</form>
 }
+
