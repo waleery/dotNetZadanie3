@@ -12,7 +12,7 @@ namespace dotNetZadanie3.Pages;
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    //private readonly YearsContext _context;
+
     private readonly IYearsService _yearsService;
 
     [BindProperty]
@@ -23,11 +23,6 @@ public class IndexModel : PageModel
 
     public string[] data;
 
-    //public Years Year {get; set;}
-
-    //public string Result {get; set;}
-
-    //public IList<Years> Years { get; set; }
 
     public IndexModel(ILogger<IndexModel> logger, IYearsService yearsService)
     {
@@ -38,7 +33,6 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         Entries = _yearsService.GetEntriesFromToday();
-
     }
 
     public IActionResult OnPost()
@@ -54,6 +48,10 @@ public class IndexModel : PageModel
         else
         {
             return Page();
+
+
+
+
             /*data = new string[4];
             data[0] = Year.Name;
             data[1] = Year.Surname;
