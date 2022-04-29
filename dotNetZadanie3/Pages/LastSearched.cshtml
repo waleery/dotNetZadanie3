@@ -5,8 +5,11 @@
 <p>Ostatnie 20 wyników</p>
 
 @if (Model.YearsContext != null){
-    @foreach (var item in Model.YearsContext)
-    {
-        <p>@Html.DisplayFor(modelItem => item.wynik)</p>
-    }
+    <ul class="list-group list-group-flush">
+        @foreach(var l in Model.YearsContext.Years){
+            <li class="list-group-item">
+                <span>@l.FullName - @l.Year - @l.wynik</span>
+            </li>
+        }
+    </ul>
 }

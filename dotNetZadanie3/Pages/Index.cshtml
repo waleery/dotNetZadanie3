@@ -1,37 +1,46 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Fizz Buzz";
- }
+	ViewData["Title"] = "Fizz Buzz";
+}
 
 <div class="text-center">
-    <h1 class="display-4">Welcome Baza danych</h1>
-    <form method="post">
-        <div class="form-group">
-            <label asp-for="Year.Name" style="float: left;">Imie:</label>
-            <br />
-            <input asp-for="Year.Name" style="float: left;" />
-            <br />
-            <br />
-            <label asp-for="Year.Surname" style="float: left;">Nazwisko:</label>
-            <br />
-            <input asp-for="Year.Surname" style="float: left;" />
-            <br />
-            <br />
-            <label asp-for="Year.Year" style="float: left;">Rok urodzenia:</label>
-            <br />
-            <input asp-for="Year.Year" style="float: left;" />
-            <br />
-            <button type="submit" class="btn btn-primary" style="margin-top:10px; margin-bottom:10px; display:flex;">Zatwierdź</button>
+	<h1 class="display-4">Welcome Baza danych</h1>
+	<form method="post">
+		<div class="form-group">
+			<label asp-for="Year.FullName" style="float: left;">Imie i Nazwisko:</label>
+			<br />
+			<input asp-for="Year.FullName" style="float: left;" />
+			<br />
+			<br />
+			<label asp-for="Year.Year" style="float: left;">Rok urodzenia:</label>
+			<br />
+			<input asp-for="Year.Year" style="float: left;" />
+			<br />
+			<button type="submit" class="btn btn-primary" style="margin-top:10px; margin-bottom:10px; display:flex;">Zatwierdź</button>
 
-            @if (@Model.Result != null)
-                {
-            <div class="alert alert-success" style="text-align:left"> @Model.Result</div>
-                }
+			@*@if (@Model.Result != null)
+			{
+				<div class="alert alert-success" style="text-align:left"> @Model.Result</div>
+			}*@
 
-            <span asp-validation-for="Year.Name" class="text-danger" style="font-weight: bold;"></span>
-            <br />
-            <span asp-validation-for="Year.Year" class="text-danger" style="font-weight: bold;"></span>
-        </div>
-    </form>
+			<span asp-validation-for="Year.FullName" class="text-danger" style="font-weight: bold;"></span>
+			<br />
+			<span asp-validation-for="Year.Year" class="text-danger" style="font-weight: bold;"></span>
+
+
+			<h3 class="display-4">Dzisiejsze Wpisy</h3>
+			@if (Model.Entries != null)
+			{
+				<ul class="list-group list-group-flush">
+					@foreach (var l in Model.Entries.Years)
+					{
+						<li class="list-group-item">
+							<span>@l.FullName, @l.Year - rok. @l.wynik</span>
+						</li>
+					}
+				</ul>
+			}
+		</div>
+	</form>
 </div>

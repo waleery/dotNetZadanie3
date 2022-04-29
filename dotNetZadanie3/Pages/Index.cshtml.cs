@@ -4,44 +4,57 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using dotNetZadanie3.Data;
+using dotNetZadanie3.Interfaces;
+using dotNetZadanie3.ViewModels.Years;
 
 namespace dotNetZadanie3.Pages;
 
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    private readonly YearsContext _context;
+    //private readonly YearsContext _context;
+    private readonly IYearsService _yearsService;
+
+    [BindProperty]
+    public YearsForListVM Year { get; set; }
+
+    public ListYearsForListVM Entries { get; set; }
 
 
     public string[] data;
 
-    [BindProperty]
-    public Years Year {get; set;}
+    //public Years Year {get; set;}
 
-    public string Result {get; set;}
+    //public string Result {get; set;}
 
-    public IList<Years> Years { get; set; }
+    //public IList<Years> Years { get; set; }
 
-    public IndexModel(ILogger<IndexModel> logger, YearsContext context)
+    public IndexModel(ILogger<IndexModel> logger, IYearsService yearsService)
     {
         _logger = logger;
-        _context = context;
+        _yearsService = yearsService;
     }
 
     public void OnGet()
     {
+        Entries = _yearsService.GetEntriesFromToday();
 
     }
 
     public IActionResult OnPost()
     {
-        if (!ModelState.IsValid)
+        var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+        if (ModelState.IsValid)
         {
-            return Page();
+            _yearsService.AddEntry(Year);
+            return RedirectToPage("./Index");
+           
         }
         else
         {
-            data = new string[4];
+            return Page();
+            /*data = new string[4];
             data[0] = Year.Name;
             data[1] = Year.Surname;
             data[2] = Year.Year.ToString();
@@ -63,21 +76,12 @@ public class IndexModel : PageModel
             cache.Add(data);
             HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(cache));
             Result = data[0] +" "+ data[1] + " " + Year.NameCheck(Year.Name) + " się  w " + data[2] + ". " + data[3];
+*/
 
-            
-            Year.wynik = Result;
-            Year.date = DateTime.Now;
-            _context.Years.Add(Year);
-            _context.SaveChanges();  
-
-            return Page();
+            //Year.wynik = Result;
 
 
-            //HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Year));
-            //return Page();
 
-            //HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Text));
-            //return RedirectToPage("./SavedInSession");
         }
     }
 }
